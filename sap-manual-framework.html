@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Kerfi - Leiðbeiningar</title>
+    <link rel="stylesheet" href="sap-manual-styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="sap-main-container">
+        <!-- Header with Progress Indicator -->
+        <div class="sap-header">
+            <h1 id="manual-title">SAP Kerfi - Leiðbeiningar: [Task Name]</h1>
+            <div class="sap-progress-indicator" id="progress-indicator">
+                <!-- Progress steps will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="sap-content-area">
+            <!-- Sidebar -->
+            <div class="sap-sidebar">
+                <h3>Yfirlit</h3>
+                <div class="sap-instruction-list">
+                    <strong>Tilgangur:</strong>
+                    <p id="manual-purpose">[Purpose of this manual]</p>
+
+                    <div id="manual-warnings">
+                        <!-- Warnings will be inserted here -->
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; margin-bottom: 15px;">Skref:</h4>
+                <ol id="step-overview" style="font-size: 13px; line-height: 1.8;">
+                    <!-- Step overview will be dynamically generated -->
+                </ol>
+            </div>
+
+            <!-- Main Content -->
+            <div class="sap-main-content">
+                <!-- Step Containers -->
+                <div id="step-containers">
+                    <!-- Individual step containers will be inserted here -->
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="sap-nav-buttons">
+                    <button class="sap-nav-button" onclick="SAPManual.previousStep()" id="prevBtn">← Fyrra skref</button>
+                    <button class="sap-nav-button" onclick="SAPManual.nextStep()" id="nextBtn">Næsta skref →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sap-manual-components.js"></script>
+    <script>
+        // Initialize the manual with configuration
+        SAPManual.init({
+            title: "SAP Kerfi - Leiðbeiningar: [Task Name]",
+            purpose: "[Purpose of this manual]",
+            steps: [
+                {
+                    title: "Velkomin í leiðbeiningarnar",
+                    content: "intro", // Reference to step template
+                    validation: null
+                },
+                // Add more steps here
+            ],
+            warnings: [
+                // Add warning messages here
+            ]
+        });
+    </script>
+</body>
+</html>
