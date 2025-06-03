@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Component Templates Library</title>
+    <link rel="stylesheet" href="sap-manual-styles.css">
+    <style>
+        .template-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .template-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+        .template-code {
+            background: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+    </style>
+    <script>
+        // Mock SAPManual object for demonstration if not loaded //
+        if (typeof SAPManual === 'undefined') {
+            window.SAPManual = {
+                createSAPWindow: function(options) {
+                    return '<div class="sap-window"><div class="sap-titlebar">' + options.title + '</div><div class="sap-content">' + options.content + '</div></div>';
+                },
+                createFormField: function(label, id, value, readonly) {
+                    return '<div class="sap-field-group"><label class="sap-field-label">' + label + '</label><input type="text" class="sap-input" id="' + id + '" value="' + (value || '') + '"' + (readonly ? ' readonly' : '') + '></div>';
+                },
+                createSAPTable: function(options) {
+                    // Simple implementation for demo
+                    let html = '<div class="sap-table-container">';
+                    if (options.tabs) {
+                        html += '<div class="sap-tab-container">';
+                        options.tabs.forEach((tab, i) => {
+                            html += '<div class="sap-tab' + (i === 0 ? ' active' : '') + '">' + tab + '</div>';
+                        });
+                        html += '</div>';
+                    }
+                    html += '<div class="sap-table-scroll-wrapper"><table class="sap-table-advanced"><thead><tr>';
+                    if (options.hasSelection) html += '<th class="narrow selection-col"><input type="checkbox"></th>';
+                    options.columns.forEach(col => {
+                        html += '<th class="' + (col.width || 'medium') + '">' + col.header + '</th>';
+                    });
+                    html += '</tr></thead><tbody>';
+                    const rows = options.emptyRows || 10;
+                    for (let i = 0; i < rows; i++) {
+                        html += '<tr>';
+                        if (options.hasSelection) html += '<td class="selection-col"><input type="checkbox"></td>';
+                        options.columns.forEach(col => {
+                            html += '<td></td>';
+                        });
+                        html += '</tr>';
+                    }
+                    html += '</tbody></table></div>';
+                    if (options.bottomToolbar) {
+                        html += '<div class="sap-bottom-toolbar"><div class="sap-action-buttons">';
+                        options.bottomToolbar.buttons.forEach(btn => {
+                            html += '<button class="sap-action-button">' + btn.label + '</button>';
+                        });
+                        html += '</div></div>';
+                    }
+                    html += '</div>';
+                    return html;
+                },
+                toggleTreeNode: function() { alert('Tree node toggled'); }
+            };
+        }
+    </script>
+</head>
+<body>
+    <div class="sap-main-container">
+        <div class="sap-header">
+            <h1>SAP Component Templates Library</h1>
+        </div>
+
+        <div style="padding: 30px;">
+            <!-- Basic SAP Window Template -->
+            <div class="template-section">
+                <div class="template-title">1. Basic SAP Window</div>
+                <div class="sap-window">
+                    <div class="sap-titlebar">
+                        <span>Window Title</span>
+                    </div>
+                    <div class="sap-menu">
+                        <span class="sap-menu-item">Menu</span>
+                        <span class="sap-menu-item">Edit</span>
+                        <span class="sap-menu-item">Favorites</span>
+                        <span class="sap-menu-item">Extras</span>
+                        <span class="sap-menu-item">System</span>
+                    </div>
+                    <div class="sap-toolbar">
+                        <div class="sap-button">
+                            <span>↵</span>
+                        </div>
+                        <div class="sap-button">
+                            <span>📋</span>
+                        </div>
+                    </div>
+                    <div class="sap-content">
+                        <p>Window content goes here</p>
+                    </div>
+                </div>
+
+                <div class="template-code">
+                    <pre>SAPManual.createSAPWindow({
+    title: 'Window Title',
+    hasMenu: true,
+    hasToolbar: true,
+    content: '&lt;p&gt;Window content goes here&lt;/p&gt;'
+});</pre>
+                </div>
+            </div>
+
+            <!-- Form Fields Template -->
+            <div class="template-section">
+                <div class="template-title">2. Form Fields</div>
+                <div class="sap-window">
+                    <div class="sap-titlebar">
+                        <span>Data Entry Form</span>
+                    </div>
+                    <div class="sap-content">
+                        <div class="sap-field-group">
+                            <label class="sap-field-label">Material</label>
+                            <input type="text" class="sap-input" value="41445059">
+                            <span style="font-size: 12px; color: #666; margin-left: 10px;">← Enter material number</span>
+                        </div>
+                        <div class="sap-field-group">
+                            <label class="sap-field-label">Plant</label>
+                            <input type="text" class="sap-input" value="2900" readonly style="background: #f0f0f0;">
+                        </div>
+                        <div class="sap-field-group">
+                            <label class="sap-field-label">Storage Location</label>
+                            <input type="text" class="sap-input" value="">
+                        </div>
+                        <div class="sap-field-group">
+                            <label class="sap-field-label">Active</label>
+                            <input type="checkbox" class="sap-checkbox" checked>
+                            <span style="font-size: 13px;">Material is active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-code">
+                    <pre>// Single field
+SAPManual.createFormField('Material', 'materialInput', '41445059');
+
+// Readonly field
+SAPManual.createFormField('Plant', 'plantInput', '2900', true);
+
+// Checkbox field
+&lt;div class="sap-field-group"&gt;
+    &lt;label class="sap-field-label"&gt;Active&lt;/label&gt;
+    &lt;input type="checkbox" class="sap-checkbox" checked&gt;
+    &lt;span&gt;Material is active&lt;/span&gt;
+&lt;/div&gt;</pre>
+                </div>
+            </div>
+
+            <!-- SAP Table Template -->
+            <div class="template-section">
+                <div class="template-title">3. SAP Table</div>
+                <table class="sap-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Document</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>08.05.2025</td>
+                            <td>Stock</td>
+                            <td>-</td>
+                            <td style="text-align: right;">0</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr class="clickable-area" onclick="alert('Row clicked!')">
+                            <td>25.05.2025</td>
+                            <td>MTRes</td>
+                            <td>0262462624/0001</td>
+                            <td style="text-align: right;">1,000</td>
+                            <td>Open</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tree View Template -->
+            <div class="template-section">
+                <div class="template-title">4. Tree View</div>
+                <div class="sap-tree">
+                    <div class="sap-tree-header">
+                        <div class="tree-columns">
+                            <div class="tree-col-1">Node</div>
+                            <div class="tree-col-2">Description</div>
+                            <div class="tree-col-3">Value</div>
+                        </div>
+                    </div>
+                    <div class="tree-row" data-level="0">
+                        <div class="tree-columns">
+                            <div class="tree-col-1">
+                                <span class="tree-expand" onclick="SAPManual.toggleTreeNode(this)">▼</span>
+                                <span class="tree-icon">📁</span>
+                                <span class="tree-text">Root Node</span>
+                            </div>
+                            <div class="tree-col-2">Main category</div>
+                            <div class="tree-col-3">100</div>
+                        </div>
+                    </div>
+                    <div class="tree-row" data-level="1">
+                        <div class="tree-columns">
+                            <div class="tree-col-1">
+                                <span class="tree-indent"></span>
+                                <span class="tree-expand">■</span>
+                                <span class="tree-icon">📄</span>
+                                <span class="tree-text">Child Node</span>
+                            </div>
+                            <div class="tree-col-2">Sub item</div>
+                            <div class="tree-col-3">50</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Elements -->
+            <div class="template-section">
+                <div class="template-title">5. Interactive Elements</div>
+
+                <!-- Clickable Button with Indicator -->
+                <div style="margin: 20px 0;">
+                    <button class="sap-button clickable-area" style="position: relative;">
+                        <span>Click Me</span>
+                        <div class="click-indicator" style="top: -10px; left: -10px;"></div>
+                    </button>
+                </div>
+
+                <!-- Arrow Indicator -->
+                <div style="position: relative; height: 50px; margin: 20px 0;">
+                    <div class="arrow-indicator" style="left: 50px; top: 10px;">⤹</div>
+                    <span style="margin-left: 80px;">Points to important element</span>
+                </div>
+
+                <!-- Highlighted Field -->
+                <div class="sap-field-group">
+                    <label class="sap-field-label">Highlighted Field</label>
+                    <input type="text" class="sap-input highlight-field" value="Important!">
+                </div>
+            </div>
+
+            <!-- Information Boxes -->
+            <div class="template-section">
+                <div class="template-title">6. Information Boxes</div>
+
+                <div class="sap-step-info">
+                    <h2>Step Information</h2>
+                    <p>This box provides context for the current step.</p>
+                </div>
+
+                <div class="sap-warning-box">
+                    <strong>⚠️ Warning:</strong><br>
+                    Important warning message goes here.
+                </div>
+
+                <div class="sap-info-box">
+                    <strong>ℹ️ Information:</strong><br>
+                    Helpful tip or additional information.
+                </div>
+
+                <div class="sap-success-box">
+                    <h3>✓ Success!</h3>
+                    <p>Operation completed successfully.</p>
+                </div>
+            </div>
+
+            <!-- Complex Form Example -->
+            <div class="template-section">
+                <div class="template-title">7. Complex Form Layout</div>
+                <div class="sap-window">
+                    <div class="sap-titlebar">
+                        <span>Change Reservation : Details</span>
+                    </div>
+                    <div class="sap-content">
+                        <div style="background: #d6e5f0; border: 1px solid #9bb8d3; padding: 10px; margin-bottom: 10px;">
+                            <div style="display: grid; grid-template-columns: 120px 100px 1fr; gap: 10px;">
+                                <label>Movement Type</label>
+                                <input type="text" class="sap-input" value="201" readonly style="width: 60px; background: #f0f0f0;">
+                                <span>Cost Center Consumption</span>
+
+                                <label>Plant</label>
+                                <input type="text" class="sap-input" value="2900" readonly style="width: 60px; background: #f0f0f0;">
+                                <span>Main Plant</span>
+
+                                <label>Material</label>
+                                <input type="text" class="sap-input" value="41445059" readonly style="width: 100px; background: #f0f0f0;">
+                                <span>Material Description</span>
+                            </div>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 20px;">
+                            <button class="sap-button" style="padding: 8px 20px;">
+                                <span>💾 Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step Template Example -->
+            <div class="template-section">
+                <div class="template-title">8. Complete Step Template</div>
+                <div class="template-code">
+                    <pre>// Example step configuration
+{
+    title: "Enter Material Number",
+    content: function(step) {
+        return `
+            &lt;div class="sap-step-info"&gt;
+                &lt;h2&gt;${step.title}&lt;/h2&gt;
+                &lt;p&gt;Enter the material number to view requirements.&lt;/p&gt;
+            &lt;/div&gt;
+
+            ${SAPManual.createSAPWindow({
+                title: 'Stock/Requirements List',
+                content: `
+                    ${SAPManual.createFormField('Material', 'materialInput')}
+                    ${SAPManual.createFormField('Plant', 'plantInput', '2900', true)}
+
+                    &lt;button class="sap-button" onclick="validateMaterial()"&gt;
+                        &lt;span&gt;▶&lt;/span&gt; Execute
+                    &lt;/button&gt;
+                `
+            })}
+
+            &lt;div class="sap-info-box"&gt;
+                &lt;strong&gt;Tip:&lt;/strong&gt; Material number must be exactly 8 digits.
+            &lt;/div&gt;
+        `;
+    },
+    validation: function() {
+        return SAPManual.validateInput('materialInput', '41445059', 'Material found!');
+    },
+    onShow: function() {
+        // Focus on input field when step is shown
+        setTimeout(() => {
+            const input = document.getElementById('materialInput');
+            if (input) input.focus();
+        }, 100);
+    }
+}</pre>
+                </div>
+            </div>
+
+            <!-- JavaScript Usage Examples -->
+            <div class="template-section">
+                <div class="template-title">9. JavaScript Function Examples</div>
+                <div class="template-code">
+                    <pre>// Add click handler with visual indicator
+SAPManual.addClickHandler('myButton', function() {
+    alert('Button clicked!');
+    SAPManual.nextStep();
+}, true);
+
+// Validate input field
+function validateMaterial() {
+    if (SAPManual.validateInput('materialInput', '41445059', 'Material found!')) {
+        // Show additional content
+        document.getElementById('materialList').style.display = 'block';
+    }
+}
+
+// Toggle tree node
+SAPManual.toggleTreeNode(expandIcon);
+
+// Highlight element temporarily
+SAPManual.highlightElement('importantField', 2000);
+
+// Custom validation function
+function customValidation() {
+    const value = document.getElementById('myInput').value;
+    if (value.length >= 8) {
+        SAPManual.utils.alert('Valid input!');
+        return true;
+    }
+    SAPManual.utils.alert('Input must be at least 8 characters.');
+    return false;
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sap-manual-components.js"></script>
+    <script>
+        // Demo initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Purchase Order table demo
+            const poTableHTML = SAPManual.createSAPTable({
+                type: 'advanced',
+                hasScrolling: true,
+                hasSelection: true,
+                hasRowNumbers: false,
+                tabs: ['Delivery/Invoice', 'Conditions', 'Texts', 'Address', 'Communication',
+                       'Partners', 'Additional Data', 'Org. Data', 'Status', 'Customer Data'],
+                statusPanel: [
+                    { icon: '📄', label: 'Not Yet Sent', value: '0,00' },
+                    { icon: '🚚', label: 'Not Delivered', value: '0,00' },
+                    { icon: '📝', label: 'Not Invoiced', value: '0,00' },
+                    { icon: '💰', label: 'Down paymts', value: '0,00' }
+                ],
+                columns: [
+                    { header: 'S..', field: 'status', width: 'narrow', type: 'icon' },
+                    { header: 'Itm', field: 'item', width: 'narrow' },
+                    { header: 'A', field: 'a', width: 'narrow', type: 'icon' },
+                    { header: 'I', field: 'i', width: 'narrow', type: 'icon' },
+                    { header: 'Purchase...', field: 'purchase', width: 'medium' },
+                    { header: 'Request Item', field: 'requestItem', width: 'medium' },
+                    { header: 'Material', field: 'material', width: 'medium' },
+                    { header: 'Short Text', field: 'shortText', width: 'wide' },
+                    { header: 'PO Quantity', field: 'quantity', width: 'medium', align: 'right' },
+                    { header: 'O...', field: 'o1', width: 'narrow' },
+                    { header: 'C Deliv. Date', field: 'delivDate', width: 'medium' },
+                    { header: 'Net Price', field: 'netPrice', width: 'medium', align: 'right' },
+                    { header: 'Curr...', field: 'currency', width: 'narrow' },
+                    { header: 'Per', field: 'per', width: 'narrow' },
+                    { header: 'O...', field: 'o2', width: 'narrow' },
+                    { header: 'Matl Group', field: 'matlGroup', width: 'medium' },
+                    { header: 'P', field: 'p', width: 'narrow', type: 'icon' }
+                ],
+                emptyRows: 15,
+                bottomToolbar: {
+                    buttons: [
+                        { label: 'Default Values', onClick: 'alert("Default Values clicked")' },
+                        { label: 'Add! Planning', onClick: 'alert("Add Planning clicked")' },
+                        { label: 'Catalog', onClick: 'alert("Catalog clicked")' }
+                    ]
+                }
+            });
+
+            document.getElementById('po-table-demo').innerHTML = poTableHTML;
+
+            // Initialize Purchase Requisition table demo
+            const prTableHTML = SAPManual.createSAPTable({
+                type: 'advanced',
+                hasScrolling: true,
+                hasSelection: false,
+                hasRowNumbers: false,
+                columns: [
+                    { header: 'St..', field: 'status', width: 'narrow' },
+                    { header: 'Matl Group', field: 'matlGroup', width: 'medium' },
+                    { header: 'Vendor', field: 'vendor', width: 'medium' },
+                    { header: 'PGr', field: 'pgr', width: 'narrow' },
+                    { header: 'Plant', field: 'plant1', width: 'narrow' },
+                    { header: 'Plant', field: 'plant2', width: 'narrow' },
+                    { header: 'Stor. Loc.', field: 'storLoc', width: 'medium' },
+                    { header: 'Requisnr.', field: 'requisnr', width: 'medium' },
+                    { header: 'Tracking...', field: 'tracking', width: 'medium' },
+                    { header: 'Fixed Vendor', field: 'fixedVendor', width: 'medium' },
+                    { header: 'SPK', field: 'spk', width: 'narrow' },
+                    { header: 'POrg', field: 'porg', width: 'narrow' },
+                    { header: 'Agreement', field: 'agreement', width: 'medium' },
+                    { header: 'Item', field: 'item', width: 'narrow' },
+                    { header: 'Catalog ID', field: 'catalogId', width: 'medium' },
+                    { header: 'Info Record', field: 'infoRecord', width: 'medium' }
+                ],
+                data: [
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' },
+                    { pgr: '290', plant1: '2900', plant2: 'RTA - ISAL', storLoc: '', matlGroup: '' }
+                ]
+            });
+
+            document.getElementById('pr-table-demo').innerHTML = prTableHTML;
+        });
+    </script>
+</body>
+</html>
