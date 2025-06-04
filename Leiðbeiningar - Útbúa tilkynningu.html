@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Kerfi - Hvernig á að útbúa tilkynningu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sap-main-container">
+        <div class="sap-header">
+            <h1>SAP Kerfi - Leiðbeiningar: Að útbúa tilkynningu</h1>
+            <div class="sap-progress-indicator">
+                <div class="sap-progress-step" id="prog0">✓</div>
+                <div class="sap-progress-step" id="prog1">1</div>
+                <div class="sap-progress-step" id="prog2">2</div>
+                <div class="sap-progress-step" id="prog3">3</div>
+                <div class="sap-progress-step" id="prog4">4</div>
+                <div class="sap-progress-step" id="prog5">5</div>
+                <div class="sap-progress-step" id="prog6">6</div>
+            </div>
+        </div>
+
+        <div class="sap-content-area">
+            <div class="sap-sidebar">
+                <h3 style="margin-bottom: 20px;">Yfirlit</h3>
+                <div class="sap-instruction-list">
+                    <strong>Tilgangur:</strong>
+                    <p style="margin: 10px 0; font-size: 13px;">Útbúa tilkynningu í SAP kerfinu.</p>
+
+                    <div class="sap-warning-box" style="margin-top: 20px;">
+                        <strong>⚠️ Athugið:</strong><br>
+                        Ekki er hægt að eyða beiðnum þegar frátekt hefur verið <strong>keypt út á verkbeiðni</strong>.
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; margin-bottom: 15px;">Skref:</h4>
+                <ol style="font-size: 13px; line-height: 1.8;">
+                    <li>Opna IH01 gluggann</li>
+                    <li>Slá inn verksmiðjunúmer</li>
+                    <li>Finna lagerinn í tré</li>
+                    <li>Opna stofna tilkynningu gluggan</li>
+                    <li>Opna object information skjáinn</li>
+                    <li>Skrifa lýsingu á tilkynningu og vista</li>
+                </ol>
+            </div>
+
+            <div class="sap-main-content">
+                <!-- Step 0: Intro -->
+                <div class="sap-step-container active" id="step0">
+                    <div class="sap-step-info">
+                        <h2>Velkomin í leiðbeiningarnar</h2>
+                        <p>Þessar leiðbeiningar sýna þér skref fyrir skref hvernig á að útbúa tilkynningu í SAP kerfinu.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 40px 0;">
+                        <h3 style="margin-bottom: 20px;">Hvað þú munt læra:</h3>
+                        <ul style="list-style: none; text-align: left; display: inline-block; font-size: 16px; line-height: 2;">
+                            <li>✓ Hvernig á að finna staðsetningu í IH01</li>
+                            <li>✓ Hvernig á að velja rétta staðsetningu í tré</li>
+                            <li>✓ Hvernig á að stofna nýja tilkynningu</li>
+                            <li>✓ Hvernig á að vista tilkynningu í kerfinu</li>
+                        </ul>
+                    </div>
+
+                    <div class="sap-info-box">
+                        <strong>Tími:</strong> Um 5 mínútur<br>
+                        <strong>Kunnátta:</strong> Grunnþekking á SAP
+                    </div>
+                </div>
+
+                <!-- Step 1: Open IH01 -->
+                <div class="sap-step-container" id="step1">
+                    <div class="sap-step-info">
+                        <h2>Skref 1: Opna IH01 gluggann</h2>
+                        <p>Byrjum á að opna IH01 gluggann til að skoða functional location structure.</p>
+                    </div>
+
+                    <div class="sap-window">
+                        <div class="sap-startmenu">
+                            <span class="sap-startmenu-item">📄</span>
+                            <span class="sap-startmenu-item">Menu</span>
+                            <span class="sap-startmenu-item">Edit</span>
+                            <span class="sap-startmenu-item">Favorites</span>
+                            <span class="sap-startmenu-item">Extras</span>
+                            <span class="sap-startmenu-item">System</span>
+                            <span class="sap-startmenu-item">Help</span>
+                        </div>
+
+                        <!-- Top toolbar with green check, dropdown and icons -->
+                        <div class="sap-top-toolbar">
+                            <div class="sap-top-left">
+                                <button class="sap-icon1-btn" title="Check">✅</button>
+                                <div class="sap-command-area">
+                                    <div class="command-instruction">
+                                        <input type="text" class="sap-command-field" id="commandField" placeholder="Command field">
+                                    </div>
+                                </div>
+                                <button class="sap-icon1-btn" title="Back">⬅</button>
+                                <button class="sap-icon1-btn" title="Save">💾</button>
+                                <button class="sap-icon1-btn" title="Print">🖨️</button>
+                                <button class="sap-icon1-btn" title="Left arrow">⬅️</button>
+                                <button class="sap-icon1-btn" title="Up arrow">⬆️</button>
+                                <button class="sap-icon1-btn" title="Right arrow">➡️</button>
+                                <button class="sap-icon1-btn" title="First page">📄</button>
+                                <button class="sap-icon1-btn" title="Previous page">📄</button>
+                                <button class="sap-icon1-btn" title="Next page">📄</button>
+                                <button class="sap-icon1-btn" title="last page">📄</button>
+                                <button class="sap-icon1-btn" title="Session">📄</button>
+                                <button class="sap-icon1-btn" title="Help">❓</button>
+                                <button class="sap-icon1-btn" title="Info">💻</button>
+                            </div>
+                        </div>
+
+                        <div class="sap-titlebar">
+                            <span> SAP Easy Access</span>
+                        </div>
+
+                        <!-- SAP Easy Access Section -->
+                        <div class="sap-easy-access-section">
+                            <!-- Small icon toolbar -->
+                            <div class="sap-small-toolbar">
+                                <button class="sap-icon1-btn" title="Create">📁</button>
+                                <button class="sap-icon1-btn" title="Change">📝</button>
+                                <button class="sap-icon1-btn" title="Star">⭐</button>
+                                <button class="sap-icon1-btn" title="Star">⭐</button>
+                                <button class="sap-icon1-btn" title="Arrow">✏️</button>
+                                <button class="sap-icon1-btn" title="Up">🔺</button>
+                                <button class="sap-icon1-btn" title="Down">🔻</button>
+                            </div>
+
+                            <!-- Favorites Tree -->
+                            <div class="sap-favorites-tree">
+                                <div class="favorites-header">
+                                    <span class="tree-expand" onclick="toggleFavoritesNode(this)">▼</span>
+                                    <span class="tree-icon">📁</span>
+                                    <span class="tree-text">Favorites</span>
+                                </div>
+
+                                <div class="favorites-content">
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-icon">⭐</span>
+                                        <span class="tree-text">ME5A - Purchase Requisitions: List Display</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Brgjar</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Endurþjöntun</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Cockpit</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Lagerstjórn</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Samningar</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Innkaupantanir</span>
+                                    </div>
+                                    <div class="favorites-item">
+                                        <span class="tree-indent"></span>
+                                        <span class="tree-expand" onclick="toggleFavoritesNode(this)">▶</span>
+                                        <span class="tree-icon">📁</span>
+                                        <span class="tree-text">Eftirfylgni</span>
+                                    </div>
+
+                                    <!-- Click marker -->
+                                    <div class="click-indicator-commandfield-box" style="position: absolute; top: 240px; left: 615px; color: #d946ef; font-size: 20px;"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Command Input Area -->
+                    </div>
+                        <div class="sap-info-box">
+                            Skrifaðu <strong>IH01</strong> í command field og ýttu á enter.
+                            <br>
+                            <br>
+                            <strong>Ábending:</strong> Ef þú ert þegar í öðrum glugga, sláðu inn <strong>/nIH01</strong> til að fara beint í IH01.
+                        </div>
+                        <button class="sap-nav-button" onclick="checkCommand()" style="margin-top: 20px;">Athuga skipun</button>
+                    </div>
+
+                <!-- Step 2: Enter Material Number -->
+                <div class="sap-step-container" id="step2">
+                    <div class="sap-step-info">
+                        <h2>Skref 2: Slá inn verksmiðjunúmer</h2>
+                        <p>Nú þurfum við að slá inn functional location númerið til að finna rétta staðsetningu.</p>
+                    </div>
+
+                    <div class="sap-window">
+                        <div class="sap-startmenu">
+                            <span class="sap-startmenu-item">📄</span>
+                            <span class="sap-startmenu-item">program</span>
+                            <span class="sap-startmenu-item">Edit</span>
+                            <span class="sap-startmenu-item">Goto</span>
+                            <span class="sap-startmenu-item">System</span>
+                            <span class="sap-startmenu-item">Help</span>
+                        </div>
+
+                        <div class="sap-top-toolbar">
+                            <div class="sap-top-left">
+                                <button class="sap-icon1-btn" title="Check">✅</button>
+                                <div class="sap-command-area">
+                                    <div class="command-instruction">
+                                        <input type="text" class="sap-command-field" id="commandField2" placeholder="Command field">
+                                    </div>
+                                </div>
+                                <button class="sap-icon1-btn" title="Back">⬅</button>
+                                <button class="sap-icon1-btn" title="Save">💾</button>
+                                <button class="sap-icon1-btn" title="Print">🖨️</button>
+                                <button class="sap-icon1-btn" title="Left arrow">⬅️</button>
+                                <button class="sap-icon1-btn" title="Up arrow">⬆️</button>
+                                <button class="sap-icon1-btn" title="Right arrow">➡️</button>
+                                <button class="sap-icon1-btn" title="First page">📄</button>
+                                <button class="sap-icon1-btn" title="Previous page">📄</button>
+                                <button class="sap-icon1-btn" title="Next page">📄</button>
+                                <button class="sap-icon1-btn" title="last page">📄</button>
+                                <button class="sap-icon1-btn" title="Session">📄</button>
+                                <button class="sap-icon1-btn" title="Help">❓</button>
+                                <button class="sap-icon1-btn" title="Info">💻</button>
+                            </div>
+                        </div>
+
+                        <div class="sap-titlebar">
+                            <span style="font-style: italic;">Functional Location Structure: Selection</span>
+                        </div>
+
+                        <div class="sap-subtitlebar">
+                            <button class="sap-subtitlebar-icon-btn" title="Check">🕒</button>
+                            <button class="sap-subtitlebar-icon-btn" title="Check">✅</button>
+                            <button class="sap-subtitlebar-icon-btn" title="Information">ℹ️</button>
+                        </div>
+
+
+                        <div class="sap-content">
+                            <div class="sap-field-group">
+                                <label class="sap-field-label">Functional Location</label>
+                                <input type="text" class="sap-input" id="LocationInput" value="">
+                                <span style="font-size: 12px; color: #666; margin-left: 10px;">← Sláið inn 2900-0060-0010-0020</span>
+                            </div>
+                            <div class="sap-field-group">
+                                <label class="sap-field-label">Valid From</label>
+                                <input type="text" class="sap-input-small" value="27.05.2025" readonly style="background: #f0f0f0;">
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <button class="sap-button" onclick="showMaterialList()">
+                                    <span>▶</span> Execute
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sap-info-box">
+                        <strong>Athugið:</strong> Functional Location númerið þarf að vera nákvæmlega rétt slegið inn.
+                    </div>
+                </div>
+
+                <!-- Step 3: Navigate Tree Structure -->
+                <div class="sap-step-container" id="step3">
+                    <div class="sap-step-info">
+                        <h2>Skref 3: Finna lagerinn í tré</h2>
+                        <p>Nú þurfum við að finna og velja BIRGÐAGEYMSLA (LAGER) í Functional Location tréinu.</p>
+                    </div>
+
+                    <div class="sap-window">
+                        <div class="sap-startmenu">
+                            <span class="sap-startmenu-item">📄</span>
+                            <span class="sap-startmenu-item">List</span>
+                            <span class="sap-startmenu-item">Edit</span>
+                            <span class="sap-startmenu-item">Goto</span>
+                            <span class="sap-startmenu-item">Extras</span>
+                            <span class="sap-startmenu-item">Environment</span>
+                            <span class="sap-startmenu-item">Settings</span>
+                            <span class="sap-startmenu-item">System</span>
+                            <span class="sap-startmenu-item">Help</span>
+                        </div>
+
+                        <div class="sap-top-toolbar">
+                            <div class="sap-top-left">
+                                <button class="sap-icon1-btn" title="Check">✅</button>
+                                <div class="sap-command-area">
+                                    <div class="command-instruction">
+                                        <input type="text" class="sap-command-field" id="commandField1" placeholder="Command field">
+                                    </div>
+                                </div>
+                                <button class="sap-icon1-btn" title="Back">⬅</button>
+                                <button class="sap-icon1-btn" title="Save">💾</button>
+                                <button class="sap-icon1-btn" title="Print">🖨️</button>
+                                <button class="sap-icon1-btn" title="Left arrow">⬅️</button>
+                                <button class="sap-icon1-btn" title="Up arrow">⬆️</button>
+                                <button class="sap-icon1-btn" title="Right arrow">➡️</button>
+                                <button class="sap-icon1-btn" title="First page">📄</button>
+                                <button class="sap-icon1-btn" title="Previous page">📄</button>
+                                <button class="sap-icon1-btn" title="Next page">📄</button>
+                                <button class="sap-icon1-btn" title="last page">📄</button>
+                                <button class="sap-icon1-btn" title="Session">📄</button>
+                                <button class="sap-icon1-btn" title="Help">❓</button>
+                                <button class="sap-icon1-btn" title="Info">💻</button>
+                            </div>
+                        </div>
+
+                        <div class="sap-titlebar">
+                            <span style="font-style: italic;">Functional Location Structure: Structure List</span>
+                        </div>
+
+                        <div class="sap-tree">
+                            <div class="sap-tree-header">
+                                <div class="tree-col-1">
+                                    <span class="sap-tree-header-item">Functional Location</span>
+                                </div>
+                                <div class="tree-col-2">
+                                    <span class="sap-tree-header-item">FuncLocDesc</span>
+                                </div>
+                                <div class="tree-col-3">
+                                    <span class="sap-tree-header-item">Valid From</span>
+                                </div>
+                            </div>
+
+                            <div id="treeContainer">
+                                <div class="tree-row" data-level="0">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-expand" onclick="toggleNode(this)">▼</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900</span>
+                                        </div>
+                                        <div class="tree-col-2">Isal plant</div>
+                                        <div class="tree-col-3">27.05.2025</div>
+                                    </div>
+                                </div>
+
+                                <!-- Warehouse first sub-items start -->
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0010</span>
+                                        </div>
+                                        <div class="tree-col-2">Skautvinnsla (Skautskáli og Skautsmiðja)</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0020</span>
+                                        </div>
+                                        <div class="tree-col-2">Rafgreining</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0030</span>
+                                        </div>
+                                        <div class="tree-col-2">Flutningur á fljótandi áli og raflausn</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0040</span>
+                                        </div>
+                                        <div class="tree-col-2">Steypuskáli</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0050</span>
+                                        </div>
+                                        <div class="tree-col-2">Súráls- og álflúoríðflutningskerfi</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row clickable-warehouse" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse" onclick="toggleNode(this); selectWarehouse(this); ">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text" id="OnnurferliTEXT">2900-0060</span>
+                                            <div class="click-indicator2" style="left: 21px; top: 0px;"></div>
+                                        </div>
+                                        <div class="tree-col-2">Önnur ferli</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Warehouse first sub-items depth 2 first -->
+                                <div class="tree-row warehouse-child clickable-warehouse" data-level="2" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse" onclick="toggleNode(this); selectWarehouse(this); ">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text" id="Byggingar1ID">2900-0060-0010</span>
+                                        </div>
+                                        <div class="tree-col-2" id="Byggingar1Text">
+                                            <span class="birgda-clickable" onclick="selectBirgdageymsla(event)">Byggingar fyrir önnur ferli</span>
+                                        </div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Warehouse first sub-items depth 3 first -->
+                                <div class="tree-row warehouse-child " data-level="3" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0060-0010-0010</span>
+                                        </div>
+                                        <div class="tree-col-2">Byggingar fyrir skrifstofur og mötuneyti></div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row warehouse-child clickable-warehouse" data-level="3" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse" onclick="toggleNode(this); selectWarehouse(this); ">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text" id="Byggingar2ID">2900-0060-0010-0020</span>
+                                        </div>
+                                        <div class="tree-col-2" id="Byggingar2Text">
+                                            <span class="birgda-clickable" onclick="selectBirgdageymsla(event)">Byggingar fyrir hjálparkerfi</span>
+                                        </div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                 <!-- Warehouse first sub-items depth 4 first -->
+                                    <div class="tree-row" data-level="4" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US10</span>
+                                        </div>
+                                        <div class="tree-col-2">Slökkviliðshús</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="4" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US15</span>
+                                        </div>
+                                        <div class="tree-col-2">GATEHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row clickable-warehouse" data-level="4" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse" onclick="toggleNode(this); selectWarehouse(this); ">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text" id="warehouseText">2900US21</span>
+                                            <div class="click-indicator2" style="left: 21px; top: 0px;"></div>
+                                        </div>
+                                        <div class="tree-col-2">WAREHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Warehouse first sub-items depth 5 -->
+                                <div class="tree-row warehouse-child" data-level="5" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">■</span>
+                                            <span class="tree-icon">📄</span>
+                                            <span class="tree-text" id="birgdageymslaText">60761393</span>
+                                        </div>
+                                        <div class="tree-col-2" id="birgdageymslaDesc">
+                                            <span class="birgda-clickable" onclick="selectBirgdageymsla(event)">BIRGÐAGEYMSLA (LAGER)</span>
+                                        </div>
+                                        <div class="tree-col-7">1,000</div>
+                                    </div>
+                                </div>
+                                 <!-- Warehouse sub-items depth 5 completed -->
+
+
+                                <!-- Warehouse first sub-items depth 4 rest -->
+                                <div class="tree-row" data-level="4" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US22</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 1</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="4" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US23</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 2</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+                                <!-- Warehouse sub-items depth 4 completed -->
+
+                                <!-- Warehouse first sub-items depth 3 rest -->
+                                <div class="tree-row" data-level="3" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US15</span>
+                                        </div>
+                                        <div class="tree-col-2">GATEHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row clickable-warehouse" data-level="3" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse" onclick="toggleNode(this); selectWarehouse(this); ">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US21</span>
+                                            <div class="click-indicator2" style="left: 21px; top: 0px;"></div>
+                                        </div>
+                                        <div class="tree-col-2">WAREHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="3" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US22</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 1</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="3" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US23</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 2</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+                                 <!-- Warehouse sub-items depth 3 completed -->
+
+
+
+                                <!-- Warehouse first sub-items depth 2 -->
+                                <div class="tree-row warehouse-child" data-level="2" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand clickable-warehouse">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0060-0020</span>
+                                        </div>
+                                        <div class="tree-col-2">Fartæki fyrir önnur ferli</div>
+                                        </div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row warehouse-child" data-level="2" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text" >2900CY</span>
+                                        </div>
+                                        <div class="tree-col-2">COMMUNICATIONS SYSTEM</div>
+                                        </div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row warehouse-child" data-level="2" style="display: none;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0060-0050</span>
+                                        </div>
+                                        <div class="tree-col-2" id="BunadurTEXT">
+                                            <span class="birgda-clickable">Búnaður fyrir önnur ferli</span>
+                                        </div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+                                <!-- Warehouse sub-items depth 2 completed -->
+
+
+                                <!-- Warehouse first sub-items depth 1 rest -->
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0070</span>
+                                        </div>
+                                        <div class="tree-col-2">Raforkuveita</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0080</span>
+                                        </div>
+                                        <div class="tree-col-2">Veitur</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0085</span>
+                                        </div>
+                                        <div class="tree-col-2">Viðhaldssvið</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0090</span>
+                                        </div>
+                                        <div class="tree-col-2">Kersmiðja</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0100</span>
+                                        </div>
+                                        <div class="tree-col-2">Stjórn- og tölvukerfi</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1" style="display: block;">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand" onclick="toggleNode(this)">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0110</span>
+                                        </div>
+                                        <div class="tree-col-2">Baðefnisvinnsla</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+                                <!-- Warehouse sub-items depth 1 completed -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sap-info-box">
+                        <strong>Leiðbeiningar:</strong><br>
+                        1. Færðu músina yfir <strong>"Fara til"</strong> í valmyndinni<br>
+                        2. Færðu músina yfir <strong>"Stofna tilkynningu"</strong> til að sjá undirmöppuna<br>
+                        3. Smelltu á <strong>"Almennt"</strong> til að búa til almenna tilkynningu
+                    </div>
+                </div>
+                <!-- Step 4: Create Notification -->
+                <div class="sap-step-container" id="step4">
+                    <div class="sap-step-info">
+                        <h2>Skref 4: Opna stofna tilkynningu glugga</h2>
+                        <p>Frábært! Þú hefur valið BIRGÐAGEYMSLA (LAGER). Nú förum við í valmyndina til að stofna tilkynningu.</p>
+                    </div>
+
+                    <div class="sap-window">
+                        <div class="sap-titlebar">
+                            <span style="font-style: italic;">Functional Location Structure: Structure List</span>
+                        </div>
+
+                        <div class="sap-menu" style="position: relative;">
+                            <span class="sap-menu-item highlighted" id="faraMenuHighlight4" onmouseover="showFaraDropdown()" onmouseout="hideFaraDropdown()">Fara til</span>
+                            <div class="sap-dropdown-menu" id="faraDropdown" onmouseover="keepFaraDropdown()" onmouseout="hideFaraDropdown()">
+                                <div class="sap-dropdown-item sap-submenu" onmouseover="showStofnaSubmenu()" onmouseout="hideStofnaSubmenu()">
+                                    Stofna tilkynningu
+                                    <div class="sap-submenu-content" id="stofnaSubmenu" onmouseover="keepStofnaSubmenu()" onmouseout="hideStofnaSubmenu()">
+                                        <div class="sap-dropdown-item" onclick="selectAlmennt()">Almennt</div>
+                                        <div class="sap-dropdown-item">Sérstakt</div>
+                                    </div>
+                                </div>
+                                <div class="sap-dropdown-item">Skoða tilkynningar</div>
+                                <div class="sap-dropdown-item">Breyta staðsetningu</div>
+                            </div>
+                            <span class="sap-menu-item">Viðbætur</span>
+                            <span class="sap-menu-item">Umhverfi</span>
+                            <span class="sap-menu-item">Stillingar</span>
+                            <span class="sap-menu-item">System</span>
+                        </div>
+
+                        <div class="sap-tree">
+                            <div class="sap-tree-header">
+                                <div class="tree-col-1">
+                                    <span class="sap-tree-header-item">Functional Location</span>
+                                </div>
+                                <div class="tree-col-2">
+                                    <span class="sap-tree-header-item">FuncLocDesc</span>
+                                </div>
+                                <div class="tree-col-3">
+                                    <span class="sap-tree-header-item">Valid From</span>
+                                </div>
+                            </div>
+
+                            <div id="frozenTreeContainer">
+                                <div class="tree-row" data-level="0">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-expand">▼</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900-0060-0010-0020</span>
+                                        </div>
+                                        <div class="tree-col-2">Byggingar fyrir hjálparkerfi</div>
+                                        <div class="tree-col-3">27.05.2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US10</span>
+                                        </div>
+                                        <div class="tree-col-2">FIRE STATION BUILDING</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US15</span>
+                                        </div>
+                                        <div class="tree-col-2">GATEHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▼</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US21</span>
+                                        </div>
+                                        <div class="tree-col-2">WAREHOUSE</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Selected BIRGÐAGEYMSLA - highlighted in yellow -->
+                                <div class="tree-row selected" data-level="2">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">■</span>
+                                            <span class="tree-icon">📄</span>
+                                            <span class="tree-text">60761393</span>
+                                        </div>
+                                        <div class="tree-col-2">BIRGÐAGEYMSLA (LAGER)</div>
+                                        <div class="tree-col-3">1,000</div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US22</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 1</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tree-row" data-level="1">
+                                    <div class="tree-columns">
+                                        <div class="tree-col-1">
+                                            <span class="tree-indent"></span>
+                                            <span class="tree-expand">▶</span>
+                                            <span class="tree-icon">📁</span>
+                                            <span class="tree-text">2900US23</span>
+                                        </div>
+                                        <div class="tree-col-2">RAW MATERIAL STOREROOM 2</div>
+                                        <div class="tree-col-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sap-info-box">
+                        <strong>Leiðbeiningar:</strong><br>
+                        1. Færðu músina yfir <strong>"Fara til"</strong> í valmyndinni<br>
+                        2. Færðu músina yfir <strong>"Stofna tilkynningu"</strong> til að sjá undirmöppuna<br>
+                        3. Smelltu á <strong>"Almennt"</strong> til að búa til almenna tilkynningu
+                    </div>
+                </div>
+
+                <!-- Step 5: Open Object Information -->
+                <div class="sap-step-container" id="step5">
+                    <div class="sap-step-info">
+                        <h2>Skref 5: Opna Object information glugga</h2>
+                        <p>Nú þurfum við að opna Object information til að bæta við upplýsingum.</p>
+                    </div>
+
+                    <div class="sap-window">
+                        <div class="sap-titlebar">
+                            <span>Functional Location Structure: Structure List</span>
+                        </div>
+                        <div class="sap-menu">
+                            <span class="sap-menu-item highlighted" id="faraMenuHighlight5">Fara til</span>
+                            <span class="sap-menu-item">Viðbætur</span>
+                            <span class="sap-menu-item">Umhverfi</span>
+                            <span class="sap-menu-item">Stillingar</span>
+                            <span class="sap-menu-item">System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Write Description and Save -->
+                <div class="sap-step-container" id="step6">
+                    <div class="sap-step-info">
+                        <h2>Skref 6: Skrifa lýsingu og vista</h2>
+                        <p>Að lokum skrifum við lýsingu á tilkynninguna og vistum hana í kerfinu.</p>
+                    </div>
+                </div>
+
+                <div class="sap-nav-buttons">
+                    <button class="sap-nav-button" onclick="previousStep()" id="prevBtn">← Fyrra skref</button>
+                    <button class="sap-nav-button" onclick="nextStep()" id="nextBtn">Næsta skref →</button>
+                </div>
+            </div>
+
+    <script>
+        let currentStep = 2;
+        const totalSteps = 7;
+        let warehouseClicked = false;
+        let birgdageymslaClicked = false;
+
+        function updateProgress() {
+            for (let i = 0; i < totalSteps; i++) {
+                const progStep = document.getElementById('prog' + i);
+                if (i < currentStep) {
+                    progStep.classList.add('completed');
+                    progStep.classList.remove('active');
+                    if (i > 0) progStep.textContent = '✓';
+                } else if (i === currentStep) {
+                    progStep.classList.add('active');
+                    progStep.classList.remove('completed');
+                } else {
+                    progStep.classList.remove('active', 'completed');
+                }
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.sap-step-container').forEach(container => {
+                container.classList.remove('active');
+            });
+
+            document.getElementById('step' + step).classList.add('active');
+
+            // Update navigation
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.style.display = step === 0 ? 'none' : 'block';
+
+            if (step === totalSteps - 1) {
+                nextBtn.textContent = 'Byrja aftur';
+                nextBtn.onclick = () => {
+                    currentStep = 0;
+                    warehouseClicked = false;
+                    birgdageymslaClicked = false;
+                    showStep(0);
+                };
+            } else {
+                nextBtn.textContent = 'Næsta skref →';
+                nextBtn.onclick = nextStep;
+            }
+
+            // Reset step 3 state when navigating away (but not when going to step 4)
+            if (step !== 3 && step !== 4) {
+                warehouseClicked = false;
+                birgdageymslaClicked = false;
+                const warehouseChildren = document.querySelectorAll('.warehouse-child');
+                warehouseChildren.forEach(child => child.style.display = 'none');
+
+                // Reset highlights
+                const rows = document.querySelectorAll('.tree-row');
+                rows.forEach(row => row.classList.remove('selected'));
+
+                // Reset expand icon
+                const warehouseRow = document.querySelector('.clickable-warehouse');
+                if (warehouseRow) {
+                    const expandIcon = warehouseRow.querySelector('.tree-expand');
+                    if (expandIcon) expandIcon.textContent = '▶';
+                }
+
+                // Reset clickable span
+                const clickableSpan = document.querySelector('.birgda-clickable');
+                if (clickableSpan) {
+                    clickableSpan.style.pointerEvents = 'auto';
+                    clickableSpan.style.backgroundColor = 'transparent';
+                }
+
+                // Remove any indicators
+                const indicators = document.querySelectorAll('.click-indicator-box');
+                indicators.forEach(indicator => indicator.remove());
+            }
+
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                showStep(currentStep);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Interactive functions for Step 1
+        function checkCommand() {
+            const input = document.getElementById('commandField');
+            if (input.value.toUpperCase() === 'IH01' || input.value === '/nIH01') {
+                input.classList.add('highlight-field');
+                setTimeout(() => {
+                    alert('Rétt! IH01 glugginn opnast.');
+                    nextStep();
+                }, 500);
+            } else {
+                alert('Sláðu inn IH01 eða /nIH01 í skipanasvæðið.');
+                input.focus();
+            }
+        }
+
+        // Interactive functions for Step 2
+        function showMaterialList() {
+            const locationInput = document.getElementById('LocationInput');
+            if (locationInput.value === '2900-0060-0010-0020') {
+                locationInput.classList.add('highlight-field');
+                setTimeout(() => {
+                    alert('Rétt! Functional Location Structure opnast.');
+                    nextStep();
+                }, 500);
+            } else {
+                alert('Sláðu inn 2900-0060-0010-0020 í Functional Location reitinn');
+                locationInput.focus();
+            }
+        }
+
+        // Interactive functions for Step 3
+        function toggleNode(element, event) {
+            if (event) {
+                event.stopPropagation()
+            }
+
+            const row = element.closest('.tree-row');
+            const isWarehouse = row.classList.contains('clickable-warehouse');
+
+            if (isWarehouse) {
+                const children = document.querySelectorAll('.warehouse-child');
+                const isExpanded = element.textContent === '▼';
+
+                if (isExpanded) {
+                    element.textContent = '▶';
+                    children.forEach(child => child.style.display = 'none');
+                } else {
+                    element.textContent = '▼';
+                    children.forEach(child => child.style.display = 'block');
+                }
+            }
+        }
+
+        function selectWarehouse(element) {
+            if (!warehouseClicked) {
+                warehouseClicked = true;
+
+                // Expand the warehouse node
+                const expandIcon = element.querySelector('.tree-expand');
+                expandIcon.textContent = '▼';
+
+                // Show children
+                const children = document.querySelectorAll('.warehouse-child');
+                children.forEach(child => child.style.display = 'block');
+
+                // Add visual indicator to BIRGÐAGEYMSLA text
+                const birgRow = document.querySelector('.warehouse-child');
+                if (!birgRow.querySelector('.click-indicator-box')) {
+                    const newIndicator = document.createElement('div');
+                    newIndicator.className = 'click-indicator-box';
+                    newIndicator.style.left = '370px';
+                    newIndicator.style.top = '-5px';
+                    birgRow.querySelector('.tree-col-2').appendChild(newIndicator);
+                }
+            }
+        }
+
+        function selectBirgdageymsla(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            if (warehouseClicked && !birgdageymslaClicked) {
+                birgdageymslaClicked = true;
+
+                const birgRow = document.querySelector('.warehouse-child');
+                birgRow.classList.add('selected');
+
+                // Remove click indicator
+                const indicator = birgRow.querySelector('.click-indicator-box');
+                if (indicator) indicator.remove();
+
+                // Remove hover effect
+                const clickableSpan = birgRow.querySelector('.birgda-clickable');
+                if (clickableSpan) {
+                    clickableSpan.style.pointerEvents = 'none';
+                    clickableSpan.style.backgroundColor = 'transparent';
+                }
+
+                setTimeout(() => {
+                    alert('Rétt, Nú hefur þú valið BIRGÐAGEYMSLA (LAGER). Nú höldum við áfram að stofna tilkynningu í sama glugga.');
+                    nextStep();
+                }, 300);
+            } else if (!warehouseClicked) {
+                alert('Þú þarft fyrst að smella á WAREHOUSE (2900US21) til að opna undirmöppuna.');
+            }
+        }
+
+        // Add Enter key listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step 1 - Command field Enter key
+            const commandField = document.getElementById('commandField');
+            if (commandField) {
+                commandField.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        checkCommand();
+                    }
+                });
+            }
+
+            // Step 2 - Location input Enter key
+            const locationInput = document.getElementById('LocationInput');
+            if (locationInput) {
+                locationInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        showMaterialList();
+                    }
+                });
+            }
+        });
+
+        // Interactive functions for Step 4 - Dropdown menus
+        let faraDropdownTimeout;
+        let stofnaSubmenuTimeout;
+
+        function showFaraDropdown() {
+            clearTimeout(faraDropdownTimeout);
+            const dropdown = document.getElementById('faraDropdown');
+            if (dropdown) {
+                dropdown.classList.add('show');
+            }
+        }
+
+        function hideFaraDropdown() {
+            faraDropdownTimeout = setTimeout(() => {
+                const dropdown = document.getElementById('faraDropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('show');
+                }
+                hideStofnaSubmenu();
+            }, 200);
+        }
+
+        function keepFaraDropdown() {
+            clearTimeout(faraDropdownTimeout);
+        }
+
+        function showStofnaSubmenu() {
+            clearTimeout(stofnaSubmenuTimeout);
+            const submenu = document.getElementById('stofnaSubmenu');
+            if (submenu) {
+                submenu.style.display = 'block';
+            }
+        }
+
+        function hideStofnaSubmenu() {
+            stofnaSubmenuTimeout = setTimeout(() => {
+                const submenu = document.getElementById('stofnaSubmenu');
+                if (submenu) {
+                    submenu.style.display = 'none';
+                }
+            }, 200);
+        }
+
+        function keepStofnaSubmenu() {
+            clearTimeout(stofnaSubmenuTimeout);
+        }
+
+        function selectAlmennt() {
+            alert('Þú valdir "Almennt" - Create PM Notification glugginn opnast.');
+            nextStep();
+        }
+
+        // Initialize
+        showStep(0);
+    </script>
+</body>
+</html>
